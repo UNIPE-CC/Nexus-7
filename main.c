@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "tad.h"
 
 #define MAX_AIRLOCK 4
 #define MAX_STR     50

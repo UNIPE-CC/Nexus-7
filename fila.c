@@ -3,8 +3,7 @@
 /* ------------------------------------------------------------------ */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "tad.h"
 
 typedef struct {
     Tripulante dados[MAX_AIRLOCK];
@@ -20,7 +19,7 @@ void inicializarFilaAirlock(FilaAirlock* F) {
 }
 
 int enfileirarAirlock(FilaAirlock* F, Tripulante t) {
-    if (F->tamanho >= MAX_AIRLOCK - 1) {
+    if (F->tamanho >= MAX_AIRLOCK){
         printf("Airlock cheio. Capacidade maxima: %d tripulantes.\n", MAX_AIRLOCK);
         return 0;
     }

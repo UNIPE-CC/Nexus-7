@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "tad.h"
 
 typedef struct NoPilha {
     char           descricao[100];
@@ -37,7 +38,8 @@ char* desempilharMissao(PilhaMissoes* P) {
     if (!P->topo) { printf("Historico vazio.\n"); return NULL; }
     NoPilha* temp = P->topo;
     P->topo       = temp->prox;
-    char* resultado = temp->descricao;  /* aponta para dentro de temp */
+    char* resultado = malloc(100);  /* aponta para dentro de temp */
+    strcpy(resultado, temp->descricao);
     free(temp);                          /* libera temp */
     P->tamanho--;
     return resultado;                    /* retorna ponteiro para memoria liberada */

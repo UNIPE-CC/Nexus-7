@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "tad.h"
 
 typedef struct NoDeque {
     char           item[80];
@@ -19,11 +20,6 @@ typedef struct {
     int      tamanho;
 } DequeSuprimentos;
 
-void inicializarDeque(DequeSuprimentos* D) {
-    D->frente  = NULL;
-    D->cauda   = NULL;
-    D->tamanho = 0;
-}
 
 void inserirFrenteDeque(DequeSuprimentos* D, const char* item, int prio) {
     NoDeque* novo = (NoDeque*) malloc(sizeof(NoDeque));
@@ -42,15 +38,16 @@ void inserirFundoDeque(DequeSuprimentos* D, const char* item, int prio) {
     NoDeque* novo = (NoDeque*) malloc(sizeof(NoDeque));
     if (!novo) return;
     strncpy(novo->item, item, 79);
+    novo->item[79] = '\0';
     novo->prioridade = prio;
     novo->prox = NULL;
     novo->ant  = D->cauda;
     if (D->cauda) {
         D->cauda->prox = novo;
-    }
-    /*
-     * NOTA ARIA: no inserido no fundo. Ponteiros atualizados.
-     */
+    }else
+        D->frente = novo;
+
+    D->cauda = novo;
     D->tamanho++;
 }
 
